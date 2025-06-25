@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.VITE_OPENAI_API_KEY;
 
   if (!apiKey) {
     return res.status(500).json({ error: 'OpenAI API key not configured' });
@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`
+        "Authorization": `Bearer ${apiKey}`
       },
       body: JSON.stringify(payload)
     });
